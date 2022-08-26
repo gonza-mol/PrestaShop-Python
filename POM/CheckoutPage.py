@@ -15,6 +15,9 @@ class CheckoutPageLocators:
     btnContinuePaMe = (By.ID, "button-payment-method")
     btnConfirmOrder = (By.ID, "button-confirm")
     messageTransactionSuccess = (By.CSS_SELECTOR, "#content>p:nth-child(2)")
+    textFieldComment = (By.CSS_SELECTOR, "#collapse-payment-method>div>p:nth-child(4)>textarea")
+    titleTransactionSuccess = (By.CSS_SELECTOR, "#content>h1")
+    btnContinueGiftConfirmation = (By.CSS_SELECTOR, "#content>div>div>a")
 
 
 class CheckoutPage:
@@ -36,5 +39,19 @@ class CheckoutPage:
 
     def showSuccessMessageTransaction(self):
         return self.driver.find_element(*CheckoutPageLocators.messageTransactionSuccess).text
+
+    def selectBtnContinueCheckoutGift(self, comment):
+        self.driver.find_element(*CheckoutPageLocators.btnContinueBiDe).click()
+        self.driver.find_element(*CheckoutPageLocators.textFieldComment).send_keys(comment)
+        self.driver.find_element(*CheckoutPageLocators.checkboxTermsConditions).click()
+        self.driver.find_element(*CheckoutPageLocators.btnContinuePaMe).click()
+        self.driver.find_element(*CheckoutPageLocators.btnConfirmOrder).click()
+
+
+    def showSuccessTitleTransaction(self):
+        return self.driver.find_element(*CheckoutPageLocators.titleTransactionSuccess).text
+
+    def selectBtnContinueGiftConfirmation(self):
+        self.driver.find_element(*CheckoutPageLocators.btnContinueGiftConfirmation).click()
 
 

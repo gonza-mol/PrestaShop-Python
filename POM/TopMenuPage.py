@@ -28,6 +28,12 @@ class TopMenuPageLocators:
     addCartBtn = (By.ID, "cart")
     optionCheckout = (By.CSS_SELECTOR, "#cart a:nth-child(2)>strong")
     barMenu = (By.CSS_SELECTOR, ".navbar-nav>li>a")
+    btnTotalCart = (By.CSS_SELECTOR, "#cart-total")
+    lblEmptyCart = (By.CSS_SELECTOR, "#cart>ul>li>p")
+    camerasOption = (By.CSS_SELECTOR, "#menu ul>li:nth-child(7)>a")
+    changeCurrencyOption = (By.CSS_SELECTOR, "#form-currency>div>button>span")
+    poundSterlingCurrency = (By.CSS_SELECTOR, "#form-currency li:nth-child(2)>button")
+
 
 
 class TopMenuPage:
@@ -108,3 +114,19 @@ class TopMenuPage:
 
     def showAllBarMenu(self):
         return self.driver.find_elements(*TopMenuPageLocators.barMenu)
+
+    def showEmptyCart(self):
+        return self.driver.find_element(*TopMenuPageLocators.btnTotalCart).text
+
+    def showLblEmptyCart(self):
+        return self.driver.find_element(*TopMenuPageLocators.lblEmptyCart).text
+
+    def selectCamerasOption(self):
+        self.driver.find_element(*TopMenuPageLocators.camerasOption).click()
+
+    def selectChangeCurrencyOption(self):
+        self.driver.find_element(*TopMenuPageLocators.changeCurrencyOption).click()
+
+    def selectPoundSterlingCurrency(self):
+        self.driver.find_element(*TopMenuPageLocators.poundSterlingCurrency).click()
+

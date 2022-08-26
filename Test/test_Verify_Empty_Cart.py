@@ -6,8 +6,6 @@ import os
 
 from POM.AccountPage import AccountPage
 from POM.LoginPage import LoginPage
-from POM.ProductPage import ProductPage
-from POM.ProductSearchPage import ProductSearchPage
 from POM.TopMenuPage import TopMenuPage
 
 sys.path.append(os.path.join(os.path.dirname(__file__),"..",".."))
@@ -19,18 +17,20 @@ from Utils import utils as utils
 from Utils.BaseClass import BaseClass
 
 @pytest.mark.usefixtures("test_setup")
-class TestVerifyTheNumberOfMP3PlayerList(BaseClass):
+class TestEmptyCart(BaseClass):
 
-    def test_VerifyTheMP3Playerslist(self):
+    def test_Verify_Empty_Cart(self):
         log = self.get_Logger()
         driver = self.driver
         tm = TopMenuPage(driver)
-        tm.select_Mp3Players()
-        pp = ProductPage(driver)
-        listMP3= len(pp.getMP3PlayersList())
-        print("Cantidad de items de mp3 son: "+str(listMP3))
-        print("Y los productos listados son:")
-        for i in pp.getMP3PlayersList():
-            print("\n")
-            print(i.text)
+        tm.select_LoginOption()
+        lp = LoginPage(driver)
+        lp.tryLoginUser("gonzalo.molina@darwoft.com", "Maestruli10")
+        time.sleep(2)
+        aux = tm.showEmptyCart()
+        if aux == "0 item(s) - $0.00":
+            time.sleep(2)
+            tm.addProductToCart()
+            assert tm.showLblEmptyCart() == "Your shopping cart is empty!"
+            print("El carrito está vacío")
         time.sleep(3)
