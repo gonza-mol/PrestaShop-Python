@@ -15,6 +15,7 @@ class ProductPageLocators:
     imacWishList = (By.CSS_SELECTOR, "#content div.button-group>button:nth-child(2)")
     imacProductAddCartBtn = (By.CSS_SELECTOR, "#content div.button-group>button:nth-child(1)")
     individualCameraPrice = (By.CSS_SELECTOR, "#content>div:nth-child(3) span.price-tax")
+    leftMenuOption = (By.CSS_SELECTOR, "#column-left>div.list-group>a")
 
 class ProductPage:
 
@@ -42,7 +43,8 @@ class ProductPage:
     def showIndividualCamerasPrice(self):
         return self.driver.find_elements(*ProductPageLocators.individualCameraPrice)
 
-
+    def showTotalItemsOnLeftMenu(self):
+        return self.driver.find_elements(*ProductPageLocators.leftMenuOption)
 
 
 

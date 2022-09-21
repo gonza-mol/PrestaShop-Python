@@ -13,7 +13,7 @@ class AccountPageLocators:
     radioButtonNo = (By.CSS_SELECTOR, "input[type='radio'][value='0']")
     btnContinue = (By.CSS_SELECTOR, "#content div.pull-right>input")
     unsuscribeMessageNewsLetter = (By.CSS_SELECTOR, "#account-account>div.alert.alert-success.alert-dismissible")
-
+    affiliateAccountLink = (By.CSS_SELECTOR, "#content>ul:nth-child(6)>li>a")
 
 
 class AccountPage:
@@ -39,3 +39,7 @@ class AccountPage:
 
     def showSuccessUnsuscribeNewsLetter(self):
         return self.driver.find_element(*AccountPageLocators.unsuscribeMessageNewsLetter).text
+
+    def selectAffiliateAccount(self):
+        self.driver.find_element(*AccountPageLocators.affiliateAccountLink).click()
+
